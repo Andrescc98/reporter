@@ -1,0 +1,12 @@
+{
+    "name": "app/reporter",
+    "description": "app para generar reportes",
+    "type": "project",
+    "license": "MIT",
+    "require": {
+        "league/plates": "^3.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.4"
+    }
+}
