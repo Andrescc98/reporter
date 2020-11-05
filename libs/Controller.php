@@ -9,6 +9,10 @@
         }
 
         protected function render(string $template, array $data=null){
-            return $this->template->render($template, $data);
+
+            return $data 
+                ? $this->template->render($template, $data)
+                : $this->template->render($template);
+            
         }
     }
