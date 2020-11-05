@@ -6,6 +6,6 @@
 
         public function index(){
             $name="Andres Coronado";
-            echo $this->template->render("index", compact("name"));
+            echo $this->render("index", compact("name"));
         }
     }
