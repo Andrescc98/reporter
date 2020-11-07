@@ -34,8 +34,6 @@ class Connection
                 array(PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING));
             
             $this->link->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-            echo "conectado";
             
             
         } catch (PDOException $e) 
