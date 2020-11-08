@@ -4,6 +4,8 @@
 
     abstract class Controller{
 
+        use Session;
+
         public function __construct() {
             $this->template = new Engine("../views");
         }
