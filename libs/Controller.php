@@ -1,20 +1,30 @@
 <?php
-    namespace Libs;
-    use League\Plates\Engine;
 
-    abstract class Controller{
+namespace Libs;
 
-        use Session;
+use League\Plates\Engine;
 
-        public function __construct() {
-            $this->template = new Engine("../views");
-        }
+abstract class Controller
+{
 
-        protected function render(string $template, array $data=null){
+    use Session;
 
-            return $data 
-                ? $this->template->render($template, $data)
-                : $this->template->render($template);
-            
-        }
+    public function __construct()
+    {
+
     }
+
+    protected function render(string $view, array $data = null)
+    {
+        $template = new Engine("../views");
+
+        return $data
+            ? $template->render($view, $data)
+            : $template->render($view);
+    }
+
+    protected function redirect(string $to)
+    {
+        return header("location:{$to}");
+    }
+}
