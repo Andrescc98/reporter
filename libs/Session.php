@@ -2,16 +2,32 @@
 
 namespace Libs;
 
+
+/**
+ * maneja la sesion del usuario
+ */
 trait Session
 {
 
-    private function start(array $user)
+    /**
+     * inicia la sesion y almacena usuario en $_SESSION
+     * 
+     * @param array $user
+     * 
+     * @return void
+     */
+    private function start(array $user):void
     {
         session_start();
         $_SESSION[$user["rol"]] = $user;
     }
 
-    private function is_session()
+    /**
+     * determina si la sesion esta activa
+     * 
+     * @return bool
+     */
+    private function is_session():bool
     {
         if(empty($_SESSION)){
             return false;
@@ -19,7 +35,12 @@ trait Session
         return true;
     }
 
-    private function destroy()
+    /**
+     * destruye la sesion
+     * 
+     * @return void
+     */
+    private function destroy():void
     {
         session_start();
 

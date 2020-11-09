@@ -4,6 +4,9 @@ namespace Libs;
 
 use Libs\Sentencia;
 
+/**
+ * motor de consultas sql basico
+ */
 final class Query extends Sentencia
 {
 
@@ -28,7 +31,14 @@ final class Query extends Sentencia
         return self::query($sql, $data);
     }
 
-    static private function sqlWhere(array $data)
+    /**
+     * genera los valores para las clause sql
+     * 
+     * @param array $data
+     * 
+     * @return string
+     */
+    static private function sqlWhere(array $data):string
     {
         $keys = array_keys($data);
         $where_string = "";
