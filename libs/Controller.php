@@ -32,17 +32,17 @@ abstract class Controller
      * @param mixed $res
      * @param int $code
      * 
-     * @return void
+     * 
      */
-    protected function response($res, int $code = 200):void
+    protected function response($res, int $code = 200)
     {
-        http_response_code($code);
+        
         if($code >= 400){
             echo json_encode(["error" => true ,"message" => $res]);
-            die();
+            return http_response_code($code);
         }elseif($code >= 200 and $code < 400){
             echo json_encode($res);
-            die();
+            return http_response_code($code);
         }
 
     }
