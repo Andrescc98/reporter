@@ -16,7 +16,7 @@ trait Session
      * 
      * @return void
      */
-    private function start(array $user):void
+    public function start(array $user):void
     {
         session_start();
         $_SESSION[$user["rol"]] = $user;
@@ -27,10 +27,13 @@ trait Session
      * 
      * @return bool
      */
-    private function is_session():bool
+    public function is_session():bool
     {
+        session_start();
+
         if(empty($_SESSION)){
-            return false;
+            header("location:/entrar");
+            return true;
         }
         return true;
     }
@@ -40,7 +43,7 @@ trait Session
      * 
      * @return void
      */
-    private function destroy():void
+    public function destroy():void
     {
         session_start();
 
