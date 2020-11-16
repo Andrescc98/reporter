@@ -2,5 +2,6 @@
 
 
 <?php $this->start("main") ?>
-    <h1><?= $this->e($name) ?> <i class="fa fa-user-astronaut"></i></h1>
+    <h1><?= $this->e(reset($_SESSION)["username"]) ?> <i class="fa fa-user-astronaut"></i></h1>
+    
 <?php $this->stop() ?>

@@ -5,7 +5,7 @@
     class IndexController extends Controller{
 
         public function index(){
-            $name="Andres Coronado";
-            echo $this->render("index", compact("name"));
+            $this->is_session();
+            echo $this->render("index");
         }
     }
