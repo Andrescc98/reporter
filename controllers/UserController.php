@@ -49,4 +49,10 @@ class UserController extends Controller
 
         
     }
+
+    public function post_logout()
+    {
+        $this->destroy();
+        $this->response("", 204);
+    }
 }

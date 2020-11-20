@@ -14,12 +14,22 @@
                 </a>
             </li>
         </ul>
-
+        <!-- DROPDOWN -->
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a href="#" class="nav-link">
+            <li class="nav-item dropdown">
+                <a href="#"
+                    class="nav-link dropdown-toggle"
+                    id="navDropdown" role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                >
                     <i class="fas fa-user-circle fa-2x"></i>
                 </a>
+
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navDropdown">
+                    <button class="dropdown-item" id="logout">Salir</button>
+                </div>
             </li>
         </ul>
     </div>

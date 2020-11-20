@@ -25,7 +25,12 @@
 
     <script src="/assets/style/bootstrap/js/jquery.min.js"></script>
     <!-- <script src="/assets/style/bootstrap/js/popper.min.js"></script> -->
+    <script src="/assets/style/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="/assets/style/bootstrap/js/bootstrap.min.js"></script>
+    
+    <?php if(!empty($_SESSION)): ?>
+        <script src="/assets/js/logout.js"></script>
+    <?php endif?>
 
     <?= $this->section("scripts") ?>
 </body>
