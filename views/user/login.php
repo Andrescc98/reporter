@@ -53,6 +53,9 @@
                     method:"POST",
                     body:new FormData(event.currentTarget)
                 })
+                if(res.status === 204){
+                    window.location = "/index";
+                }
                 const json = await res.json();
                 console.log(json);
 
