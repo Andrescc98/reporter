@@ -1,9 +1,11 @@
 <?php
 require __DIR__."/../../vendor/autoload.php";
 use Controllers\UserController;
+use Libs\Method;
 
 $userController = new UserController;
 
-
-$userController->post_logout();
+if(Method::post()){
+    $userController->post_logout();
+};
 
