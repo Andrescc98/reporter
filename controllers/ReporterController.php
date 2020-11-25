@@ -1,11 +1,17 @@
 <?php
-    namespace Controllers;
-    use Libs\Controller;
 
-    class ReporterController extends Controller{
+namespace Controllers;
 
-        public function listView(){
-            $this->is_session();
-            echo $this->render("reporter/list");
-        }
+use Libs\Controller;
+use Libs\Query;
+
+class ReporterController extends Controller
+{
+
+    public function listView()
+    {
+        $this->is_session();
+        $persons = Query::select("reporters");
+        echo $this->render("reporter/list", compact("persons"));
     }
+}
