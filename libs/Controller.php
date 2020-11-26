@@ -19,7 +19,7 @@ abstract class Controller
      */
     protected function render(string $view, array $data = null):string
     {
-        $template = new Engine("../views");
+        $template = new Engine(__DIR__."/../views");
 
         return $data
             ? $template->render($view, $data)
