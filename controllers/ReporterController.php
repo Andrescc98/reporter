@@ -45,4 +45,11 @@ class ReporterController extends Controller
         }
 
     }
+
+    public function detailView(){
+
+        $person = Query::select("reporters", ["id_reporter"=>$_GET["id_reporter"]])[0];
+
+        echo $this->render("reporter/detail", compact("person"));
+    }
 }
