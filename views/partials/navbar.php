@@ -2,10 +2,20 @@
     <a href="/index" class="navbar-brand">Reporter</a>
     <div class="container-fluid">
         <ul class="navbar-nav">
-            <li class="nav-item">
-                <a href="#" class="nav-link">
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle"  
+                    id="dropdownperson" role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false">
                     <i class="fas fa-user-friends"></i> Personas
                 </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownperson">
+                    <a href="/reporter/lista" class="dropdown-item">
+                    <i class="fas fa-list"></i> Lista</a>
+                    <a href="/reporter/registro" class="dropdown-item">
+                    <i class="fas fa-plus"></i> Agregar</a>
+                </div>
             </li>
 
             <li class="nav-item">
