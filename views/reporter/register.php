@@ -1,4 +1,4 @@
-<?php $this->layout("layout/app", ["title" => "lista de personas"]) ?>
+<?php $this->layout("layout/app", ["title" => "agregar persona"]) ?>
 
 <?php $this->start("main") ?>
 <div class="container">
@@ -9,7 +9,7 @@
                     <h5>Registro de personas</h5>
                 </div>
                 <div class="card-body">
-                    <form>
+                    <form id="formpersona">
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" name="cedula" placeholder="C.I">
                             <div class="input-group-append">
@@ -35,10 +35,10 @@
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" name="job" placeholder="Nombre">
+                            <input type="text" class="form-control" name="job" placeholder="Trabajo">
                             <div class="input-group-append">
                                 <span class="input-group-text">
-                                    <i class="fas fa-user"></i>
+                                    <i class="fas fa-tools"></i>
                                 </span>
                             </div>
                         </div>
@@ -53,4 +53,32 @@
         </div>
     </div>
 </div>
+<?php $this->stop() ?>
+
+<!-- scripts -->
+
+<?php $this->start("scripts") ?>
+    <script>
+        const formPersona = document.getElementById("formpersona");
+
+        formPersona.onsubmit = async (event) =>{
+
+            try{
+                event.preventDefault();
+
+                const formData = new FormData(event.currentTarget);
+
+                const res = await fetch("/post/reporter/register", {
+                    method:"POST",
+                    headers:{
+                        "X-REQUEST-WITH":"XMLHttpRequest"
+                    },
+                    body: formData
+                });
+                res.status === 201 ? location = "/reporter/lista" : null;
+            }catch(err){
+                console.log(err);
+            }
+        }
+    </script>
 <?php $this->stop() ?>
