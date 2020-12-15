@@ -31,6 +31,24 @@ final class Query extends Sentencia
         return self::query($sql, $data);
     }
 
+    static public function update(string $table, array $data, array $clause_array) :bool
+    {
+        $value_col = self::key_array_to_string_or_incognit($data);
+        $incognit = self::key_array_to_string_or_incognit($data, true);
+
+        $sql = 
+        "UPDATE {$table} SET ({$value_col}) VALUES ({$incognit}) WHERE "
+        .self::sqlWhere($clause_array);
+
+        return self::query($sql, $data);
+    }
+
+    static public function delete(string $table, array $clause_array):bool{
+
+        $sql = "DELETE  FROM {$table} WHERE ".self::sqlWhere($clause_array);
+
+        return self::query($sql);
+    }
     /**
      * genera los valores para las clause sql
      * 
