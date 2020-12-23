@@ -10,8 +10,24 @@
                 </div>
                 <div class="card-body">
                     <form id="formpersona">
+
+                        <!-- id reporter when $person exist -->
+                        <?php if(!empty($person)):?>
+                            <input 
+                            type="hidden"
+                            name="id_reporter" 
+                            <?php echo "value='".$_GET["id_reporter"]."'" ?> 
+                            >
+                        <?php endif?>
+
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" name="cedula" placeholder="C.I">
+                            <input
+                             type="text"
+                             class="form-control"
+                             name="cedula"
+                             placeholder="C.I"
+                             <?php if(!empty($person)) echo "value='".$person["cedula"]."'" ?> >
+
                             <div class="input-group-append">
                                 <span class="input-group-text">
                                     <i class="fas fa-sort-numeric-up"></i>
@@ -19,7 +35,14 @@
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" name="first_name" placeholder="Nombre">
+                            <input
+                              type="text"
+                              class="form-control"
+                              name="first_name"
+                              placeholder="Nombre"
+                             <?php if(!empty($person)) echo "value='".$person["first_name"]."'" ?> 
+                             >
+
                             <div class="input-group-append">
                                 <span class="input-group-text">
                                     <i class="fas fa-user"></i>
@@ -27,7 +50,13 @@
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" name="last_name" placeholder="Apellido">
+                            <input 
+                            type="text" 
+                            class="form-control" 
+                            name="last_name" 
+                            placeholder="Apellido"
+                            <?php if(!empty($person)) echo "value='".$person["last_name"]."'" ?>
+                            >
                             <div class="input-group-append">
                                 <span class="input-group-text">
                                     <i class="fas fa-user"></i>
@@ -35,7 +64,13 @@
                             </div>
                         </div>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" name="job" placeholder="Trabajo">
+                            <input 
+                            type="text" 
+                            class="form-control" 
+                            name="job" 
+                            placeholder="Trabajo"
+                            <?php if(!empty($person)) echo "value='".$person["job"]."'" ?>
+                            >
                             <div class="input-group-append">
                                 <span class="input-group-text">
                                     <i class="fas fa-tools"></i>
@@ -64,11 +99,15 @@
         formPersona.onsubmit = async (event) =>{
 
             try{
+                const route = pathname(location.pathname) === "modificar" 
+                ? "/post/reporter/update"
+                : "/post/reporter/register";
+
                 event.preventDefault();
 
                 const formData = new FormData(event.currentTarget);
 
-                const res = await fetch("/post/reporter/register", {
+                const res = await fetch(route, {
                     method:"POST",
                     headers:{
                         "X-REQUEST-WITH":"XMLHttpRequest"
@@ -79,6 +118,11 @@
             }catch(err){
                 console.log(err);
             }
+        }
+        function pathname(path){
+            const route = path.split("/");
+
+            return route[2];
         }
     </script>
 <?php $this->stop() ?>

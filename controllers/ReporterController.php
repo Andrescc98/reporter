@@ -52,4 +52,30 @@ class ReporterController extends Controller
 
         echo $this->render("reporter/detail", compact("person"));
     }
+
+    public function update_register()
+    {
+
+        $person = Query::select("reporters", ["id_reporter"=>$_GET["id_reporter"]])[0];
+
+        echo $this->render("reporter/register", compact("person"));
+    }
+
+    public function post_update_register()
+    {
+        $date = date("Y-m-d H:i:s");
+
+        Query::update(
+            "reporters", [
+                "first_name" => $_POST["first_name"],
+                "last_name" => $_POST["last_name"],
+                "cedula" => $_POST["cedula"],
+                "job" => $_POST["job"],
+                "updated_at" => $date
+            ],
+            ["id_reporter" => $_POST["id_reporter"] ]
+        );
+
+        return $this->response("", 201);
+    }
 }

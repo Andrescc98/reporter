@@ -33,11 +33,10 @@ final class Query extends Sentencia
 
     static public function update(string $table, array $data, array $clause_array) :bool
     {
-        $value_col = self::key_array_to_string_or_incognit($data);
-        $incognit = self::key_array_to_string_or_incognit($data, true);
+        $set_value = self::setUpdate($data);
 
         $sql = 
-        "UPDATE {$table} SET ({$value_col}) VALUES ({$incognit}) WHERE "
+        "UPDATE {$table} SET {$set_value} WHERE "
         .self::sqlWhere($clause_array);
 
         return self::query($sql, $data);
@@ -70,5 +69,21 @@ final class Query extends Sentencia
         }
         $where_string = preg_replace('/, /', "", $where_string, 1);
         return $where_string;
+    }
+
+    static private function setUpdate(array $data)
+    {
+        $keys = array_keys($data);
+        $set_string = "";
+        $index = 0;
+        foreach ($keys as $key) {
+
+            $set_string 
+            ? $set_string = $set_string . ", " . $key . "= ?"
+            : $set_string = $key . "= ?";
+
+            $index++;
+        }
+        return $set_string;
     }
 }
